@@ -42,7 +42,7 @@ jobs:
 
 
   publicar:
-    need: validar
+    needs: validar
     if: github.event_name == 'workflow_dispatch' || github.event_name == 'push'
     name: Publicar artefacto
     runs-on: ubuntu-latest
