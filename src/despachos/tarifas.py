@@ -81,3 +81,34 @@ def desglose(envio: Envio) -> dict[str, float]:
         "factor_zona": factor,
         "total": calcular(envio),
     }
+
+def calcular_recargo_volumen(envio: Envio, volumen_m3: float) -> float:
+    """Calcula un recargo según el volumen y las características del envío."""
+    if volumen_m3 <= 0:
+        return 0.0
+
+    recargo = 0.0
+
+    if volumen_m3 > 1.0:
+        recargo += 5.0
+
+    if volumen_m3 > 2.0:
+        recargo += 10.0
+
+    if envio.peso_kg > 20:
+        recargo += 7.5
+
+    if envio.valor_declarado > 1000:
+        recargo += 5.0
+
+    if envio.urgente:
+        recargo *= 1.5
+
+    if envio.zona in ZONAS_ALEJADAS:
+        recargo *= 1.35
+
+    if recargo > 30:
+        recargo = 30.0
+
+    return round(recargo, 2)
+
