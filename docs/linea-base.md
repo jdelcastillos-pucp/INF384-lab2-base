@@ -7,7 +7,7 @@ sin modificar ningun archivo del repositorio. Registrar aqui los resultados.
 |---|---|---|
 | 1 | 56 s|https://github.com/vitayien/INF384-lab2-20200909/actions/runs/34529468719 |
 | 2 | 59 s|https://github.com/vitayien/INF384-lab2-20200909/actions/runs/34530211048 |
-| 3 | | |
+| 3 | 1min 2s|https://github.com/vitayien/INF384-lab2-20200909/actions/runs/34530404812 |
 
 ## Declaracion de uso de IA generativa
 
