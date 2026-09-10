@@ -1,3 +1,5 @@
+Parte 1 — Diagnóstico
+
 1.1 Los cuatro defectos. Para cada uno: qué está mal, en qué archivo y en qué líneas se manifiesta, y qué consecuencia tiene. Un defecto no es "falta una línea": es qué garantía se pierde por no tenerla.
 
 Defecto 1: La instalación usa `pip install -r requirements.txt`, y ese archivo declara versiones abiertas como `requests>=2.31` la cual no es una version fijada. Aunque existe `requirements.lock` en el repositorio, el workflow nunca lo usa.
@@ -31,3 +33,12 @@ Sin llegar a desplegar a producción, las únicas dos métricas DORA que se pued
 1.5 El proxy. Qué número concreto van a medir para sustentar que la métrica se movió. Decláralo antes de intervenir. Hagan commit de este archivo antes de tocar el workflow. La marca de tiempo del commit es parte de la evidencia.
 
 El número concreto que se va a medir es la duración total del job validar en GitHub Actions. La línea base es un promedio de aproximadamente 1 minuto 4 segundos sobre las tres ejecuciones registradas antes de intervenir el workflow. Ese valor queda declarado como punto de comparación antes de aplicar la corrección del defecto de caché.
+
+Parte 2 — Intervención
+
+
+Parte 3 — Inyección de falla
+
+
+Parte 4 — Cierre
+
