@@ -82,6 +82,7 @@ def pedidos_abiertos(pedidos: list[Pedido]) -> list[Pedido]:
     return [p for p in pedidos if not p.esta_cerrado()]
 
 def calcular_descuento_por_volumen(pedido: Pedido) -> float:
+    # Funcion
     if pedido.esta_cerrado():
         return 0.0
 
