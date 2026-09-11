@@ -81,3 +81,45 @@ def desglose(envio: Envio) -> dict[str, float]:
         "factor_zona": factor,
         "total": calcular(envio),
     }
+
+
+
+def calcular_seguro_opcional(envio: Envio, nivel_cobertura: str = "basico") -> dict[str, float | bool]:
+    if envio.valor_declarado <= 0:
+        return {
+            "costo_seguro": 0.0,
+            "monto_cobertura": 0.0,
+            "deducible": 0.0,
+            "requiere_inspeccion": False,
+        }
+
+    tasa_cobertura = 0.01
+    monto_deducible = 50.0
+
+    if nivel_cobertura == "total":
+        tasa_cobertura = 0.03
+        monto_deducible = 0.0
+    elif nivel_cobertura == "intermedio":
+        tasa_cobertura = 0.02
+        monto_deducible = 25.0
+    elif nivel_cobertura != "basico":
+        raise ValueError(f"Nivel de cobertura invalido: {nivel_cobertura}")
+
+    costo = envio.valor_declarado * tasa_cobertura
+
+    if envio.zona in ZONAS_ALEJADAS:
+        costo += 15.00
+
+    if envio.urgente:
+        costo *= 1.15
+
+    requiere_inspeccion = False
+    if envio.valor_declarado > 1000.0 or envio.zona == "frontera":
+        requiere_inspeccion = True
+
+    return {
+        "costo_seguro": round(costo, 2),
+        "monto_cobertura": round(envio.valor_declarado, 2),
+        "deducible": monto_deducible,
+        "requiere_inspeccion": requiere_inspeccion,
+    }
